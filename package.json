@@ -1,0 +1,23 @@
+{
+  "name": "aws-ecs-express-app",
+  "version": "1.0.0",
+  "description": "Node.js Express Backend API using AWS ECS + RDS",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Lucas-Fonte/aws-ecs-express-app.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Lucas-Fonte/aws-ecs-express-app/issues"
+  },
+  "homepage": "https://github.com/Lucas-Fonte/aws-ecs-express-app#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
