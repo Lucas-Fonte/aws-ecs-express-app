@@ -14,8 +14,17 @@ Node.js Express Backend API using AWS ECS + RDS
 - Create ECS Cluster, (I'll be using Fargate)
 - Create Task Definition
 - Run Task Definition
+- Create and run service
+- Configure security group inbound rules, (In this case, I've set my source to be 0.0.0.0/0)
+- **There is a Github Action already configured**
+
+**Future improvements:** Parts of it could be automated with [terraform](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecs_service)
 
 ## Useful Links:
 
 - Github Actions + ECS: https://docs.github.com/pt/actions/guides/deploying-to-amazon-elastic-container-service
 - Express + ECS: https://dev.to/raphaelmansuy/deploy-a-docker-app-to-aws-using-ecs-3i1g
+- Fargate: https://levelup.gitconnected.com/aws-fargate-running-a-serverless-node-js-app-on-aws-ecs-c5d8dea0a85a
+- [Future] Terraform: https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecs_service
+- tsoa: https://tsoa-community.github.io/docs/introduction.html#goal
+- https://geojson.io/#map=8/-22.404/-44.904

@@ -1,0 +1,16 @@
+version: '3.3'
+services:
+  mongo:
+    image: mongo
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+  api:
+    build: .
+    volumes:
+      - ./src:/app/src
+    depends_on:
+      - mongo
+    ports:
+      - 8000:8000
