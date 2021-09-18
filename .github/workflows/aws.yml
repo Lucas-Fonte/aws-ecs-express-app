@@ -61,11 +61,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Update config.json
+      - name: Update Task Definition
         run: echo "`jq '.containerDefinitions[0].environment[0].value="${{ secrets.MONGODB_URL }}"' ${{ env.ECS_TASK_DEFINITION }}`" > ${{ env.ECS_TASK_DEFINITION }}
-
-      - name: Read Task Definition
-        run: cat ${{ env.ECS_TASK_DEFINITION }}
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1

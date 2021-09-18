@@ -9,7 +9,7 @@ import swaggerUi from 'swagger-ui-express';
 
 import Router from './routes';
 import dbConfig from './config/database';
-const PORT = process.env.PORT || 8000;
+const PORT = process.env.PORT || 80;
 
 const app: Application = express();
 
