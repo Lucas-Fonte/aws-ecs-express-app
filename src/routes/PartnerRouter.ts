@@ -1,11 +1,14 @@
 import express from 'express';
 import {
   InvalidPartnerIdError,
+  InvalidPartnerSchema,
   PartnerController,
   PartnerNotFound,
 } from '../controllers/PartnerController';
+import { authorizationToken } from './middlewares/authorizationToken';
 
 const router = express.Router();
+router.use(authorizationToken);
 
 router.get('/', async (_req, res) => {
   try {
@@ -24,9 +27,12 @@ router.post('/', async (req, res) => {
   try {
     const controller = new PartnerController();
     const response = await controller.createPartner(req.body);
-    return res.send(response);
+    return res.status(201).send(response);
   } catch (error) {
     console.error(error);
+    if (error instanceof InvalidPartnerSchema) {
+      return res.status(400).json({ message: error.message });
+    }
     return res.status(500).json({
       message: 'Something went wrong',
     });

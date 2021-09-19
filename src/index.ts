@@ -11,7 +11,7 @@ import Router from './routes';
 import dbConfig from './config/database';
 const PORT = process.env.PORT || 80;
 
-const app: Application = express();
+export const app: Application = express();
 
 app.use(express.json());
 app.use(morgan('tiny'));
@@ -29,15 +29,17 @@ app.use(
 
 app.use(Router);
 
-mongoose
-  .connect(dbConfig.url)
-  .then((_connection) => {
-    console.log('> Successfully connected to database!');
-    app.listen(PORT, () => {
-      console.log('> Server is running on port', PORT);
+if (process.env.NODE_ENV !== 'test') {
+  mongoose
+    .connect(dbConfig.url)
+    .then((_connection) => {
+      console.log('> Successfully connected to database!');
+      app.listen(PORT, () => {
+        console.log('> Server is running on port', PORT);
+      });
+    })
+    .catch((err) => {
+      console.log('Unable to connect to db', err);
+      process.exit(1);
     });
-  })
-  .catch((err) => {
-    console.log('Unable to connect to db', err);
-    process.exit(1);
-  });
+}

@@ -1,5 +1,6 @@
 import { Get, Route, Tags, Security, Post, Body, Path, Query } from 'tsoa';
 import { IPartner } from '../models/Partner';
+import * as Yup from 'yup';
 import {
   getPartner,
   getPartners,
@@ -10,11 +11,18 @@ import {
 
 import { checkIfPointIsInMultiPolygon } from '../utils/checkIfPointIsInPolygon';
 import { getCurrentLocationAddressAreaGeoJsonUrl } from '../utils/geoJson';
+import { validateCNPJ } from 'validations-br';
 
 export class InvalidPartnerIdError extends Error {
   constructor(message: string) {
     super(message);
     this.name = 'InvalidPartnerIdError';
+  }
+}
+export class InvalidPartnerSchema extends Error {
+  constructor(message: string) {
+    super(message);
+    this.name = 'InvalidPartnerSchema';
   }
 }
 
@@ -41,6 +49,40 @@ export class PartnerController {
   @Security('api_key')
   @Post('/')
   public async createPartner(@Body() body: IPartnerPayload): Promise<IPartner> {
+    try {
+      const schema = Yup.object().shape({
+        tradingName: Yup.string().required(),
+        ownerName: Yup.string().required(),
+        document: Yup.string().test(
+          'is-cnpj',
+          'CNPJ is not valid',
+          (value: any) => validateCNPJ(value)
+        ),
+        coverageArea: Yup.object().shape({
+          type: Yup.string().required(),
+          coordinates: Yup.array()
+            .length(1)
+            .of(
+              Yup.array()
+                .length(1)
+                .of(Yup.array().of(Yup.array().length(2).of(Yup.number())))
+            )
+            .required(),
+        }),
+        address: Yup.object().shape({
+          type: Yup.string().required(),
+          coordinates: Yup.array().length(2).of(Yup.number()).required(),
+        }),
+      });
+
+      await schema.validate(body);
+    } catch (error) {
+      throw new InvalidPartnerSchema(
+        // @ts-ignore
+        `Invalid partner schema! Error message: ${error.message}`
+      );
+    }
+
     return createPartner(body);
   }
 

@@ -4,3 +4,5 @@ run.sh
 build
 public
 .env
+coverage
+junit.xml

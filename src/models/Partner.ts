@@ -1,19 +1,21 @@
 import mongoose, { Schema } from 'mongoose';
 
 export interface IPartner {
-  id?: string;
+  _id?: string;
   ownerName: string;
   document: string;
   coverageArea: {
+    _id?: string;
     type: string;
     coordinates: number[][][][];
   };
   address: {
+    _id?: string;
     type: string;
     coordinates: number[];
   };
-  created_at: Date;
-  updated_at: Date;
+  created_at: Date | string;
+  updated_at: Date | string;
 }
 
 const CoverageAreaSchema = new Schema({

@@ -40,9 +40,13 @@ export const getNearestPartners = async ({
   longitude: number;
   latitude: number;
 }): Promise<IPartner[] | []> => {
-  const partners = await Partner.find({})
-    .where('address.coordinates')
-    .near({ center: { type: 'Point', coordinates: [longitude, latitude] } });
+  const partners = await Partner.find({
+    'address.coordinates': {
+      $near: {
+        $geometry: { type: 'Point', coordinates: [longitude, latitude] },
+      },
+    },
+  });
 
   if (!partners) return [];
   return partners;

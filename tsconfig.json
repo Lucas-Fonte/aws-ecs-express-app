@@ -5,6 +5,7 @@
     "outDir": "./build",
     "strict": true,
     "allowJs": true,
+    "resolveJsonModule": true,
     "skipLibCheck": true,
     "moduleResolution": "node",
     "importHelpers": true,
