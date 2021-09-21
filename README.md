@@ -1,9 +1,9 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Lucas-Fonte/aws-ecs-express-app/main/public/assets/ts_logo.svg" alt="ts-logo" width="60"/>
+  <img src="https://raw.githubusercontent.com/Lucas-Fonte/projects-assets/main/ts_logo.svg" alt="ts-logo" width="60"/>
     +
-  <img src="https://raw.githubusercontent.com/Lucas-Fonte/aws-ecs-express-app/main/public/assets/ecs_logo.png" alt="api-logo" width="60" />
+  <img src="https://raw.githubusercontent.com/Lucas-Fonte/projects-assets/main/ecs_logo.png" alt="api-logo" width="60" />
     +
-  <img src="https://raw.githubusercontent.com/Lucas-Fonte/aws-ecs-express-app/main/public/assets/geojson_logo.png" alt="api-logo" width="60" />
+  <img src="https://raw.githubusercontent.com/Lucas-Fonte/projects-assets/main/geojson_logo.png" alt="api-logo" width="60" />
 </p>
 <h1 align="center">
     Aws ECS Express App - Partner Application using GeoJSON
@@ -16,12 +16,30 @@ This is a test API that emulates a service providing stores/businesses, as a lis
 <br />
 
 <p align="center">
-<img src="https://img.shields.io/badge/Code-Typescript-informational?style=flat&logo=typescript&logoColor=white&color=blue)" alt="image" />
+<img src="https://img.shields.io/badge/Code-Typescript-informational?style=flat&logo=typescript&logoColor=white&color=blue)" alt="ts-shield" />
 
-<img src="https://img.shields.io/badge/Tools-Aws-informational?style=flat&logo=amazon&logoColor=white&color=blue)" alt="image" />
-<img src="https://img.shields.io/badge/Tools-MongoDB-informational?style=flat&logo=mongodb&logoColor=white&color=blue)" alt="image" />
+<img src="https://img.shields.io/badge/Tools-Aws-informational?style=flat&logo=amazon&logoColor=white&color=blue)" alt="aws-shield" />
+<img src="https://img.shields.io/badge/Tools-MongoDB-informational?style=flat&logo=mongodb&logoColor=white&color=blue)" alt="mongo-shield" />
 
 </p>
+
+---
+
+# AUTHENTICATION TOKEN
+
+- **Token:** Basic cm9vdDphZG1pbg==
+- **Basic user:** root
+- **Basic password:** admin
+
+### Getting authorized with Swagger
+
+- Click on the Authorize button:
+
+<img src="https://raw.githubusercontent.com/Lucas-Fonte/projects-assets/main/authorize_button.png" alt="image" width="300"/>
+
+- Type the given user and password, all your request will authorized after that
+
+<img src="https://raw.githubusercontent.com/Lucas-Fonte/projects-assets/main/basic_login.png" alt="image" width="300"/>
 
 ---
 
