@@ -2,15 +2,15 @@
   "entryFile": "src/index.ts",
   "noImplicitAdditionalProperties": "throw-on-extras",
   "spec": {
-    "outputDirectory": "public",
-    "specVersion": 3,
     "securityDefinitions": {
-      "api_key": {
-        "type": "apiKey",
-        "name": "api_key",
+      "basic": {
+        "type": "basic",
+        "name": "Authorization",
         "in": "header"
       }
-    }
+    },
+    "outputDirectory": "public",
+    "specVersion": 3
   },
   "ignore": ["**/node_modules/**"]
 }

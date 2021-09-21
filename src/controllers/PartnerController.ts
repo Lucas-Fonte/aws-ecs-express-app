@@ -1,4 +1,4 @@
-import { Get, Route, Tags, Security, Post, Body, Path, Query } from 'tsoa';
+import { Get, Route, Tags, Post, Body, Path, Query, Security } from 'tsoa';
 import { IPartner } from '../models/Partner';
 import * as Yup from 'yup';
 import {
@@ -12,6 +12,7 @@ import {
 import { checkIfPointIsInMultiPolygon } from '../utils/checkIfPointIsInPolygon';
 import { getCurrentLocationAddressAreaGeoJsonUrl } from '../utils/geoJson';
 import { validateCNPJ } from 'validations-br';
+import { Position } from '@turf/helpers';
 
 export class InvalidPartnerIdError extends Error {
   constructor(message: string) {
@@ -40,13 +41,13 @@ interface SearchPartnerResponse {
 @Route('partners')
 @Tags('partners')
 export class PartnerController {
-  @Security('api_key')
+  @Security('basic')
   @Get('/')
   public async getPartners(): Promise<Array<IPartner>> {
     return getPartners();
   }
 
-  @Security('api_key')
+  @Security('basic')
   @Post('/')
   public async createPartner(@Body() body: IPartnerPayload): Promise<IPartner> {
     try {
@@ -86,7 +87,7 @@ export class PartnerController {
     return createPartner(body);
   }
 
-  @Security('api_key')
+  @Security('basic')
   @Get('/:id')
   public async getPartner(@Path() id: string): Promise<IPartner | null> {
     if (id.match(/^[0-9a-fA-F]{24}$/)) {
@@ -102,14 +103,14 @@ export class PartnerController {
     );
   }
 
-  @Security('api_key')
+  @Security('basic')
   @Get('/search')
   public async getNearestPartner(
     @Query() longitude: number,
     @Query() latitude: number
   ): Promise<SearchPartnerResponse | null> {
     const partners = await getNearestPartners({ longitude, latitude });
-    const currentLocation = [longitude, latitude];
+    const currentLocation: Position = [longitude, latitude];
 
     for (const partner of partners) {
       const isPointInPolygon = checkIfPointIsInMultiPolygon(

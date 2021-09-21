@@ -18,6 +18,6 @@
       "tests/*": ["tests/*"]
     }
   },
-  "include": ["src/**/*"],
+  "include": ["src/**/*", "swaggerAuthentication.ts"],
   "exclude": ["src/**/*.test.ts"]
 }

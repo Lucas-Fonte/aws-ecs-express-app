@@ -2,7 +2,6 @@ node_modules
 credentials
 run.sh
 build
-public
 .env
 coverage
 junit.xml

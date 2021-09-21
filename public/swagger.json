@@ -1,0 +1,404 @@
+{
+	"components": {
+		"examples": {},
+		"headers": {},
+		"parameters": {},
+		"requestBodies": {},
+		"responses": {},
+		"schemas": {
+			"IPartner": {
+				"properties": {
+					"_id": {
+						"type": "string"
+					},
+					"ownerName": {
+						"type": "string"
+					},
+					"document": {
+						"type": "string"
+					},
+					"coverageArea": {
+						"properties": {
+							"coordinates": {
+								"items": {
+									"items": {
+										"items": {
+											"items": {
+												"type": "number",
+												"format": "double"
+											},
+											"type": "array"
+										},
+										"type": "array"
+									},
+									"type": "array"
+								},
+								"type": "array"
+							},
+							"type": {
+								"type": "string"
+							},
+							"_id": {
+								"type": "string"
+							}
+						},
+						"required": [
+							"coordinates",
+							"type"
+						],
+						"type": "object"
+					},
+					"address": {
+						"properties": {
+							"coordinates": {
+								"items": {
+									"type": "number",
+									"format": "double"
+								},
+								"type": "array"
+							},
+							"type": {
+								"type": "string"
+							},
+							"_id": {
+								"type": "string"
+							}
+						},
+						"required": [
+							"coordinates",
+							"type"
+						],
+						"type": "object"
+					},
+					"created_at": {
+						"anyOf": [
+							{
+								"type": "string",
+								"format": "date-time"
+							},
+							{
+								"type": "string"
+							}
+						]
+					},
+					"updated_at": {
+						"anyOf": [
+							{
+								"type": "string",
+								"format": "date-time"
+							},
+							{
+								"type": "string"
+							}
+						]
+					}
+				},
+				"required": [
+					"ownerName",
+					"document",
+					"coverageArea",
+					"address",
+					"created_at",
+					"updated_at"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"IPartnerPayload": {
+				"properties": {
+					"tradingName": {
+						"type": "string"
+					},
+					"ownerName": {
+						"type": "string"
+					},
+					"document": {
+						"type": "string"
+					},
+					"coverageArea": {
+						"properties": {
+							"coordinates": {
+								"items": {
+									"items": {
+										"items": {
+											"items": {
+												"type": "number",
+												"format": "double"
+											},
+											"type": "array"
+										},
+										"type": "array"
+									},
+									"type": "array"
+								},
+								"type": "array"
+							},
+							"type": {
+								"type": "string"
+							}
+						},
+						"required": [
+							"coordinates",
+							"type"
+						],
+						"type": "object"
+					},
+					"address": {
+						"properties": {
+							"coordinates": {
+								"items": {
+									"type": "number",
+									"format": "double"
+								},
+								"type": "array"
+							},
+							"type": {
+								"type": "string"
+							}
+						},
+						"required": [
+							"coordinates",
+							"type"
+						],
+						"type": "object"
+					}
+				},
+				"required": [
+					"tradingName",
+					"ownerName",
+					"document",
+					"coverageArea",
+					"address"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"SearchPartnerResponse": {
+				"properties": {
+					"partner": {
+						"$ref": "#/components/schemas/IPartner"
+					},
+					"geoJsonUrl": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"partner",
+					"geoJsonUrl"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"IHealthResponse": {
+				"properties": {
+					"health": {
+						"type": "boolean"
+					}
+				},
+				"required": [
+					"health"
+				],
+				"type": "object",
+				"additionalProperties": false
+			}
+		},
+		"securitySchemes": {
+			"basic": {
+				"scheme": "basic",
+				"type": "http"
+			}
+		}
+	},
+	"info": {
+		"title": "aws-ecs-express-app",
+		"version": "1.0.0",
+		"description": "Node.js Express Backend API using AWS ECS",
+		"license": {
+			"name": "ISC"
+		},
+		"contact": {}
+	},
+	"openapi": "3.0.0",
+	"paths": {
+		"/partners": {
+			"get": {
+				"operationId": "GetPartners",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"items": {
+										"$ref": "#/components/schemas/IPartner"
+									},
+									"type": "array"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"partners"
+				],
+				"security": [
+					{
+						"basic": []
+					}
+				],
+				"parameters": []
+			},
+			"post": {
+				"operationId": "CreatePartner",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/IPartner"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"partners"
+				],
+				"security": [
+					{
+						"basic": []
+					}
+				],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/IPartnerPayload"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/partners/{id}": {
+			"get": {
+				"operationId": "GetPartner",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"allOf": [
+										{
+											"$ref": "#/components/schemas/IPartner"
+										}
+									],
+									"nullable": true
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"partners"
+				],
+				"security": [
+					{
+						"basic": []
+					}
+				],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "id",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
+		"/partners/search": {
+			"get": {
+				"operationId": "GetNearestPartner",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"allOf": [
+										{
+											"$ref": "#/components/schemas/SearchPartnerResponse"
+										}
+									],
+									"nullable": true
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"partners"
+				],
+				"security": [
+					{
+						"basic": []
+					}
+				],
+				"parameters": [
+					{
+						"in": "query",
+						"name": "longitude",
+						"required": true,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					},
+					{
+						"in": "query",
+						"name": "latitude",
+						"required": true,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					}
+				]
+			}
+		},
+		"/health": {
+			"get": {
+				"operationId": "Health",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/IHealthResponse"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"health"
+				],
+				"security": [],
+				"parameters": []
+			}
+		}
+	},
+	"servers": [
+		{
+			"url": "/"
+		}
+	]
+}

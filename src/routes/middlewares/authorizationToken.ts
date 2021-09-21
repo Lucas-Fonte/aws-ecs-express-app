@@ -5,9 +5,9 @@ const authorizationToken = (
   response: Response,
   nextFunction: NextFunction
 ) => {
-  const apiKeyHeader = request.headers['authorization'];
+  const authorization = request.headers['authorization'];
 
-  if (apiKeyHeader !== process.env.AUTHORIZATION_TOKEN) {
+  if (authorization !== process.env.AUTHORIZATION_TOKEN) {
     return response
       .status(403)
       .json({ message: 'Invalid Authorization token' });

@@ -17,6 +17,8 @@ app.use(express.json());
 app.use(morgan('tiny'));
 app.use(express.static('public'));
 
+app.use('/', express.static('public'));
+
 app.use(
   '/docs',
   swaggerUi.serve,
@@ -31,7 +33,10 @@ app.use(Router);
 
 if (process.env.NODE_ENV !== 'test') {
   mongoose
-    .connect(dbConfig.url)
+    .connect(dbConfig.url, {
+      // @ts-ignore
+      useNewUrlParser: true,
+    })
     .then((_connection) => {
       console.log('> Successfully connected to database!');
       app.listen(PORT, () => {
@@ -40,6 +45,5 @@ if (process.env.NODE_ENV !== 'test') {
     })
     .catch((err) => {
       console.log('Unable to connect to db', err);
-      process.exit(1);
     });
 }
