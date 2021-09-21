@@ -1,9 +1,9 @@
 <p align="center">
-  <img src="https://upload.wikimedia.org/wikipedia/commons/4/4c/Typescript_logo_2020.svg" alt="ts-logo" width="60"/>
+  <img src="https://raw.githubusercontent.com/Lucas-Fonte/aws-ecs-express-app/main/public/assets/ts_logo.svg" alt="ts-logo" width="60"/>
     +
-  <img src="https://cdn.icon-icons.com/icons2/2699/PNG/512/amazon_ecs_logo_icon_168660.png" alt="api-logo" width="60" />
+  <img src="https://raw.githubusercontent.com/Lucas-Fonte/aws-ecs-express-app/main/public/assets/ecs_logo.png" alt="api-logo" width="60" />
     +
-  <img src="https://static.thenounproject.com/png/3962382-200.png" alt="api-logo" width="60" />
+  <img src="https://raw.githubusercontent.com/Lucas-Fonte/aws-ecs-express-app/main/public/assets/geojson_logo.png" alt="api-logo" width="60" />
 </p>
 <h1 align="center">
     Aws ECS Express App - Partner Application using GeoJSON
@@ -22,6 +22,16 @@ This is a test API that emulates a service providing stores/businesses, as a lis
 <img src="https://img.shields.io/badge/Tools-MongoDB-informational?style=flat&logo=mongodb&logoColor=white&color=blue)" alt="image" />
 
 </p>
+
+---
+
+## Documentation & Demo
+
+- **API documentation** can be found at: http://geojsonexpressapp.software/docs
+- **Demo/Documentation** can be found at: http://geojsonexpressapp.software
+- **HealthCheck** can be found at: http://geojsonexpressapp.software/health
+- **Source code** can be found at:https://github.com/Lucas-Fonte/aws-ecs-express-app
+- **Test results** can be found at: https://github.com/Lucas-Fonte/aws-ecs-express-app/actions/workflows/ci.yaml
 
 ---
 
@@ -85,7 +95,7 @@ api_1    | > Server is running on port 8080
 
 ## Deployment instructions
 
-**OBS:** This one of the possibilities of deploying and how it has been done for this specific proof of concept since the application runs in a container it could easily be changed.
+**OBS:** This one of the possibilities of deploying and how it has been done for this specific proof of concept since the application runs in a container it could easily be changed as well as the CI/CD choice.
 
 - Create an AWS account (if needed)
 - Configure [IAM Admin](https://docs.aws.amazon.com/IAM/latest/UserGuide/getting-started_create-admin-group.html) (if needed)
@@ -102,14 +112,6 @@ api_1    | > Server is running on port 8080
 **Future improvements:**
 
 - Parts of it could be automated with [terraform](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecs_service)
-
----
-
-## Documentation & Demo
-
-- **API documentation** can be found at: http://geojsonexpressapp.software/docs
-- **Demo** can be found at: http://geojsonexpressapp.software
-- **Source code** can be found at:https://github.com/Lucas-Fonte/aws-ecs-express-app
 
 ---
 
