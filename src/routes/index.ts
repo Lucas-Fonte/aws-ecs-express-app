@@ -5,7 +5,7 @@ import { notFoundMiddleware } from './middlewares/notFoundMiddleware';
 
 const router = express.Router();
 
-router.use(notFoundMiddleware);
+if (process.env.NODE_ENV !== 'test') router.use(notFoundMiddleware);
 router.use('/health', HealthRouter);
 router.use('/partners', PartnerRouter);
 
