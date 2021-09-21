@@ -6,8 +6,14 @@ const notFoundMiddleware = (
   nextFunction: NextFunction
 ) => {
   const allowedEndpoints = ['/health', '/partners', '/docs'];
-  if (!allowedEndpoints.includes(request.path)) response.redirect('/');
-  nextFunction();
+
+  for (const allowedEndpoint of allowedEndpoints) {
+    if (request.path.startsWith(allowedEndpoint)) {
+      nextFunction();
+      return;
+    }
+  }
+  response.redirect('/');
 };
 
 export { notFoundMiddleware };
