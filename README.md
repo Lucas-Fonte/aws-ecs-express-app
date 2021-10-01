@@ -25,7 +25,7 @@ This is a test API that emulates a service providing stores/businesses, as a lis
 
 ---
 
-# DISCLAIMER: PRODUCTION ENVIRONMENT HAS BEEN DEACTIVATED
+# :warning: DISCLAIMER: PRODUCTION ENVIRONMENT HAS BEEN DEACTIVATED
 
 Even though the price was around $0.60 a day, this was just a proof of concept so there is no need to keep the project up further then necessary, I will eventually host this project in another provider with a free tier or something similar to it. The contents of this project/tutorial should work up until the time this commit has been done and most of it should stay up to date or close to it.
 
